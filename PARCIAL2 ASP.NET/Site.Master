@@ -1,0 +1,244 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="PARCIAL2_ASP.NET.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - TecnoVigi Barranquilla</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" runat="server" />
+    <!-- Fuente Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <!-- Custom CSS -->
+    <link href="~/Content/Site.css" rel="stylesheet" runat="server" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="jquery" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <!-- Navbar Principal -->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-tecno sticky-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" runat="server" href="~/Default.aspx">
+                    <i class="bi bi-shield-lock-fill text-info me-2 fs-3"></i>
+                    <div>
+                        <span class="fw-bold">TecnoVigi</span> <span class="text-white">Barranquilla</span>
+                        <div class="brand-sub">
+                            Parque Central • Seguridad &amp; Tecnología
+                        </div>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTecno" aria-controls="navbarTecno" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTecno">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/Default.aspx">
+                                <i class="bi bi-house-door me-1"></i>Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropServicios" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-gear-wide-connected me-1"></i>Servicios
+                            </a>
+                            <ul class="dropdown-menu shadow" aria-labelledby="dropServicios">
+                                <li>
+                                    <a class="dropdown-item py-2" runat="server" href="~/ALARMAS.aspx">
+                                        <i class="bi bi-bell-fill text-warning me-2"></i>Sistemas de Alarmas
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" runat="server" href="~/SVC.aspx">
+                                        <i class="bi bi-camera-video-fill text-primary me-2"></i>Vigilancia y Control (SVC)
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2" runat="server" href="~/IMEI.aspx">
+                                        <i class="bi bi-cpu-fill text-success me-2"></i>Equipos Informáticos (IMEI)
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/Productos.aspx">
+                                <i class="bi bi-grid-3x3-gap-fill me-1"></i>Productos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" runat="server" href="~/Contacto.aspx">
+                                <i class="bi bi-envelope-fill me-1"></i>Contacto
+                            </a>
+                        </li>
+
+                        <!-- Menú Cliente -->
+                        <asp:PlaceHolder ID="phMenuCliente" runat="server" Visible="false">
+                            <li class="nav-item">
+                                <a class="nav-link" runat="server" href="~/NuevoPedido.aspx">
+                                    <i class="bi bi-cart-plus-fill text-warning me-1"></i>Hacer Pedido
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" runat="server" href="~/MisPedidos.aspx">
+                                    <i class="bi bi-receipt-cutoff me-1"></i>Mis Pedidos
+                                </a>
+                            </li>
+                        </asp:PlaceHolder>
+
+                        <!-- Menú Administrador / Vendedor -->
+                        <asp:PlaceHolder ID="phMenuAdmin" runat="server" Visible="false">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-warning fw-bold" href="#" id="dropAdmin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-sliders me-1"></i>Panel de Gestión
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark shadow" aria-labelledby="dropAdmin">
+                                    <li><h6 class="dropdown-header text-uppercase text-info">Módulos CRUD</h6></li>
+                                    <li>
+                                        <a class="dropdown-item" runat="server" href="~/AdminEmpleados.aspx">
+                                            <i class="bi bi-people-fill me-2 text-info"></i>Gestión de Empleados
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" runat="server" href="~/AdminClientes.aspx">
+                                            <i class="bi bi-person-lines-fill me-2 text-success"></i>Gestión de Clientes
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" runat="server" href="~/AdminProductos.aspx">
+                                            <i class="bi bi-box-seam-fill me-2 text-warning"></i>Gestión de Productos
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><h6 class="dropdown-header text-uppercase text-info">Ventas &amp; Facturación</h6></li>
+                                    <li>
+                                        <a class="dropdown-item" runat="server" href="~/AdminPedidos.aspx">
+                                            <i class="bi bi-cart-check-fill me-2 text-primary"></i>Gestión de Pedidos
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" runat="server" href="~/AdminFacturas.aspx">
+                                            <i class="bi bi-file-earmark-spreadsheet-fill me-2 text-danger"></i>Facturas Emitidas
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </asp:PlaceHolder>
+                    </ul>
+
+                    <!-- Botones de sesión -->
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <asp:PlaceHolder ID="phAnonimo" runat="server" Visible="true">
+                            <li class="nav-item me-2">
+                                <a class="btn btn-outline-light btn-sm px-3" runat="server" href="~/Login.aspx">
+                                    <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-info btn-sm px-3 text-dark fw-bold" runat="server" href="~/Registro.aspx">
+                                    <i class="bi bi-person-plus-fill me-1"></i>Registrarse
+                                </a>
+                            </li>
+                        </asp:PlaceHolder>
+
+                        <asp:PlaceHolder ID="phAutenticado" runat="server" Visible="false">
+                            <li class="nav-item me-3">
+                                <span class="badge bg-light text-dark px-3 py-2 fs-6">
+                                    <i class="bi bi-person-circle text-primary me-1"></i>
+                                    <asp:Literal ID="litUsuarioNombre" runat="server"></asp:Literal>
+                                    <span class="badge bg-secondary ms-1">
+                                        <asp:Literal ID="litUsuarioRol" runat="server"></asp:Literal>
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-danger btn-sm" runat="server" href="~/Logout.aspx" title="Cerrar Sesión">
+                                    <i class="bi bi-power me-1"></i>Salir
+                                </a>
+                            </li>
+                        </asp:PlaceHolder>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenido Dinámico de las Páginas -->
+        <main class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <!-- Footer Corporativo -->
+        <footer>
+            <div class="container">
+                <div class="row g-4 mb-4">
+                    <div class="col-lg-4 col-md-6">
+                        <h5 class="text-white fw-bold mb-3">
+                            <i class="bi bi-shield-check text-info me-2"></i>TecnoVigi Barranquilla
+                        </h5>
+                        <p class="small text-light">
+                            Empresa líder en venta e instalación de soluciones tecnológicas y sistemas de vigilancia de alta definición en Parque Central, Barranquilla. Más de 10 años brindando seguridad y tecnología a empresas y hogares.
+                        </p>
+                        <div class="text-info small">
+                            <i class="bi bi-geo-alt-fill me-1"></i>Parque Central, Barranquilla - Colombia
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h6 class="text-white fw-bold mb-3">Nuestros Servicios</h6>
+                        <ul class="list-unstyled small">
+                            <li class="mb-2"><a runat="server" href="~/ALARMAS.aspx"><i class="bi bi-chevron-right me-1"></i>Sistemas de Alarmas</a></li>
+                            <li class="mb-2"><a runat="server" href="~/SVC.aspx"><i class="bi bi-chevron-right me-1"></i>Vigilancia y Control (SVC)</a></li>
+                            <li class="mb-2"><a runat="server" href="~/IMEI.aspx"><i class="bi bi-chevron-right me-1"></i>Mantenimiento de Equipos (IMEI)</a></li>
+                            <li class="mb-2"><a runat="server" href="~/Productos.aspx"><i class="bi bi-chevron-right me-1"></i>Catálogo de Productos</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <h6 class="text-white fw-bold mb-3">Accesos</h6>
+                        <ul class="list-unstyled small">
+                            <li class="mb-2"><a runat="server" href="~/Default.aspx"><i class="bi bi-chevron-right me-1"></i>Inicio</a></li>
+                            <li class="mb-2"><a runat="server" href="~/Contacto.aspx"><i class="bi bi-chevron-right me-1"></i>Contáctanos</a></li>
+                            <li class="mb-2"><a runat="server" href="~/Login.aspx"><i class="bi bi-chevron-right me-1"></i>Acceso Clientes</a></li>
+                            <li class="mb-2"><a runat="server" href="~/Login.aspx"><i class="bi bi-chevron-right me-1"></i>Acceso Vendedores</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h6 class="text-white fw-bold mb-3">Contacto Directo</h6>
+                        <ul class="list-unstyled small text-light">
+                            <li class="mb-2"><i class="bi bi-telephone-fill text-info me-2"></i>PBX: (605) 385-2000</li>
+                            <li class="mb-2"><i class="bi bi-whatsapp text-success me-2"></i>+57 300 123 4567</li>
+                            <li class="mb-2"><i class="bi bi-envelope-fill text-warning me-2"></i>ventas@tecnovigi.com</li>
+                            <li class="mb-2"><i class="bi bi-clock-fill text-info me-2"></i>Lun - Sáb: 8:00 AM - 6:00 PM</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr class="border-secondary my-3" />
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center small text-light">
+                    <div>
+                        &copy; <%: DateTime.Now.Year %> <strong>TecnoVigi Barranquilla</strong> - Parque Central. Todos los derechos reservados.
+                    </div>
+                    <div>
+                        <span class="badge bg-primary">Universidad Autónoma del Caribe</span>
+                        <span class="badge bg-secondary ms-1">Electiva ASP.NET - Parcial 2</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </form>
+
+    <!-- Bootstrap 5 JS Bundle con Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

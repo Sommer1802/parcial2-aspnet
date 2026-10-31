@@ -1,0 +1,14 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Compilación (se regeneran al compilar)
+bin/
+obj/
+
+# Paquetes NuGet (Visual Studio los restaura solo)
+packages/
+
+# Guion personal de la sustentación
+GUION_SUSTENTACION.*
